@@ -38,7 +38,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "onnxruntime>=1.10.0",
+    "onnxruntime>=1.23.2",
 ]
 
 // [project.scripts]
