@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+requires-python = ">=3.6"
+name = "minisbd"
+description = "Free and open source library for fast sentence boundary detection"
+version = "0.9.0"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Piero Toffanin", email = "pt@masseranolabs.com" },
+    { name = "LibreTranslate Authors" },
+]
+maintainers = [
+    { name = "Piero Toffanin", email = "pt@masseranolabs.com" },
+    { name = "LibreTranslate Authors" },
+]
+keywords = [
+    "Python",
+    "sentence-boundary-detection",
+    "sbd",
+
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",    
+    "Programming Language :: Python :: 3.13",    
+]
+
+dependencies = [
+    "onnxruntime>=1.10.0",
+]
+
+// [project.scripts]
+// minisbd = "minisbd.scripts.main:main"
+
+[project.optional-dependencies]
+test = [
+    "pytest >=7.2.0",
+]
+dev = [
+    "onnx>=1.20.0",
+    "stanza==1.10.1"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["minisbd"]
+
+[tool.hatch.build.targets.sdist]
+packages = ["minisbd"]
+
+[project.urls]
+Homepage = "https://github.com/LibreTranslate/MiniSBD"
+Source = "https://github.com/LibreTranslate/MiniSBD"
+Documentation = "https://github.com/LibreTranslate/MiniSBD"
+Tracker = "https://github.com/LibreTranslate/MiniSBD/issues"
+History = "https://github.com/LibreTranslate/MiniSBD/releases"
+
+[tool.hatch.envs.default]
+features = [
+    "test",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args}"
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
