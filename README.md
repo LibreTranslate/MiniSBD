@@ -1,6 +1,8 @@
 # MiniSBD
 
-Free and open source Python library for fast sentence boundary detection. It uses 8bit quantized ONNX models for inference, thus making it extremely fast and efficient compared to larger models.
+Free and open source Python library for fast sentence boundary detection. It uses 8bit quantized ONNX models for inference, thus making it fast and lightweight. 
+
+The only dependency is `onnxruntime` / `onnxruntime-gpu`.
 
 ## Installation
 
