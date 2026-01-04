@@ -141,12 +141,15 @@ if os.path.isfile(outfile):
     print(f"Same # of sentences: {len(doc.sentences) == len(sentences)}")
     all_check = True
     for i, sent in enumerate(sentences):
-        if doc.sentences[i].text != sentences[i]:
-            print(f"{i}: {doc.sentences[i].text} != {sentences[i]}")
+        if i < len(doc.sentences):
+            if doc.sentences[i].text != sentences[i]:
+                print(f"{i}: {doc.sentences[i].text} != {sentences[i]}")
+                all_check = False
+        else:
             all_check = False
 
     if all_check:
         print("All sentences match the original model!")
     else:
-        print("Warning: some differences with the original model was found")
+        print("Warning: some differences with the original model were found")
         exit(1)
