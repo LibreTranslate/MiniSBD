@@ -1,4 +1,3 @@
-# TODO REMOVE!!
 def create_dictionary(lexicon):
     """
     This function is to create a new dictionary used for improving tokenization model for multi-syllable words languages
