@@ -122,6 +122,7 @@ print(list_models())
 | Swedish                | sv      |
 | Tamil                  | ta      |
 | Telugu                 | te      |
+| Thai                   | th      |
 | Turkish                | tr      |
 | Turkish German         | qtd     |
 | Ukrainian              | uk      |

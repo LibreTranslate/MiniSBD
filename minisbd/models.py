@@ -84,6 +84,7 @@ MODELS = {
     'cy': 'cy.onnx',
     'hyw': 'hyw.onnx',
     'wo': 'wo.onnx',
+    'th': 'th.onnx',
 }
 
 def get_user_cache_dir():
