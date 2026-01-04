@@ -21,12 +21,9 @@ def create_session(model_file, use_gpu=True, max_threads=None):
     lang_code = meta.get('lang_code', '?')
     config = json.loads(meta.get('config', "{}"))
     vocab = json.loads(meta.get('vocab', "{}"))
+    lexicon = json.loads(meta.get('lexicon', "null"))
     if len(config) == 0:
         raise Exception("No config found inside model.")
-    
-    # TODO REMOVE
-    if config.get('use_dictionary'):
-        print("TEST DICTIONARY!!!")
     
     args = {
         'lang_code': lang_code,
@@ -37,8 +34,10 @@ def create_session(model_file, use_gpu=True, max_threads=None):
             'batch_size': config.get('batch_size', 1),
             'feat_funcs': config.get('feat_funcs', []),
             'use_dictionary': config.get('use_dictionary', False),
+            'num_dict_feat': config.get('num_dict_feat', 0),
         },
-        'vocab': vocab
+        'vocab': vocab,
+        'lexicon': lexicon
     }
     
     return session, args

@@ -1,7 +1,7 @@
 import os
 from .models import get_model_file
 from .inference import create_session
-from minisbd.modules import Vocab, TokenizationDataset, output_predictions, get_sentences
+from minisbd.modules import Vocab, TokenizationDataset, output_predictions, get_sentences, create_dictionary
 
 
 class SBDetect:
@@ -12,10 +12,11 @@ class SBDetect:
 
         self.config = args['config']
         self.vocab = Vocab.load_state_dict(args['vocab'])
+        self.dictionary = create_dictionary(args['lexicon'])
 
     def sentences(self, text):
         text = '\n\n'.join(text) if isinstance(text, list) else text
-        batches = TokenizationDataset(self.config, text=text, vocab=self.vocab, dictionary=None)
+        batches = TokenizationDataset(self.config, text=text, vocab=self.vocab, dictionary=self.dictionary)
 
         _, _, _, document = output_predictions(self.config, self.session, batches, self.vocab, orig_text=text)
 
