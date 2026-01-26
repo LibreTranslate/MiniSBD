@@ -1,6 +1,7 @@
 import os
 import urllib.request
 import time
+from filelock import FileLock
 
 REPO_URL = "https://github.com/LibreTranslate/MiniSBD/releases/download/v0.0.1/"
 MODELS = {
@@ -131,8 +132,17 @@ def get_model_file(name, progress_callback=None):
 
         if not os.path.isfile(model_path):
             os.makedirs(cache_dir, exist_ok=True)
-            urllib.request.urlretrieve(url, model_path, progress)
-        
+
+            lock_file = model_path + ".lock"
+            lock = FileLock(lock_file, timeout=30)
+            with lock:
+                if not os.path.isfile(model_path):
+                    urllib.request.urlretrieve(url, model_path, progress)
+            if os.path.isfile(lock_file):
+                try:
+                    os.unlink(lock_file)
+                except:
+                    pass
         return os.path.abspath(model_path)
     except Exception as e:
         # Cleanup possibly corrupted file
