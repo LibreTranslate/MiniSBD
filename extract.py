@@ -26,7 +26,7 @@ parser.add_argument('--stanza-dir', default='', help='Path to Stanza resources d
 parser.add_argument('--lang-code', default='en', help='Language code (default: en)')
 parser.add_argument('--output', default='onnx/', help='Output folder (default: onnx/)')
 parser.add_argument('--text', default='', help="Text to feed the stanza model for extraction")
-parser.add_argument('--skip-quant', type=bool, action="store_true", help="Don't quantize model")
+parser.add_argument('--skip-quant', action="store_true", help="Don't quantize model")
 
 args = parser.parse_args()
 

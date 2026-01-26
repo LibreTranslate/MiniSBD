@@ -73,6 +73,7 @@ MODELS = {
     'sl': 'sl.onnx',
     'es': 'es.onnx',
     'sv': 'sv.onnx',
+    'sq': 'sq.onnx',
     'ta': 'ta.onnx',
     'te': 'te.onnx',
     'tr': 'tr.onnx',
