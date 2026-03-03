@@ -106,15 +106,18 @@ cache_dir = os.path.join(get_user_cache_dir(), "minisbd")
 def list_models():
     return list(MODELS.keys())
 
-def download_models():
+def download_models(load_only=None, output=None):
     all_models = list_models()
+    if load_only is not None:
+        all_models = list(set(load_only) & set(all_models))
 
     for model in all_models:
         max_retries = 10
         retry_delay = 1
         for attempt in range(max_retries):
             try:
-                print(f"Downloading model: {model}")
+                if output is not None:
+                    output(f"Downloading model: {model}")
                 get_model_file(model)
                 break
             except Exception as e:
