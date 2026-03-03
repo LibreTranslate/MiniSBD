@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 requires-python = ">=3.6"
 name = "minisbd"
 description = "Free and open source library for fast sentence boundary detection"
-version = "0.9.4"
+version = "0.9.5"
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
