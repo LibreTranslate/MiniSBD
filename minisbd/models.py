@@ -106,6 +106,26 @@ cache_dir = os.path.join(get_user_cache_dir(), "minisbd")
 def list_models():
     return list(MODELS.keys())
 
+def download_models():
+    all_models = list_models()
+
+    for model in all_models:
+        max_retries = 10
+        retry_delay = 1
+        for attempt in range(max_retries):
+            try:
+                print(f"Downloading model: {model}")
+                get_model_file(model)
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"Failed to download {model}: {e}. Retrying in {retry_delay}s...")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2
+                else:
+                    print(f"Failed to download {model} after {max_retries} attempts: {e}")
+                    raise
+
 def get_model_file(name, progress_callback=None):
     if name.startswith("http"):
         url = name
@@ -128,7 +148,7 @@ def get_model_file(name, progress_callback=None):
             nonlocal last_update
             now = time.time()
             if progress_callback is not None and total_size > 0 and now - last_update >= 1:
-                progress_callback(f"Downloading model", block_num * block_size / total_size * 5)
+                progress_callback(f"Downloading model {name}", block_num * block_size / total_size * 5)
                 last_update = now
 
         if not os.path.isfile(model_path):

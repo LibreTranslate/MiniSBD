@@ -1,5 +1,5 @@
 import os
-from .models import get_model_file
+from .models import get_model_file, download_models
 from .inference import create_session
 from minisbd.modules import Vocab, TokenizationDataset, output_predictions, get_sentences, create_dictionary
 
