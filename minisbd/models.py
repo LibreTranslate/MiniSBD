@@ -3,7 +3,7 @@ import urllib.request
 import time
 from filelock import FileLock
 
-REPO_URL = "https://github.com/LibreTranslate/MiniSBD/releases/download/v0.0.1/"
+REPO_URL = os.getenv("MINISBD_REPO_URL", default="https://github.com/LibreTranslate/MiniSBD/releases/download/v0.0.1/")
 MODELS = {
     'en': 'en.onnx',
     'fr': 'fr.onnx',
